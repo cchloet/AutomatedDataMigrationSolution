@@ -1,0 +1,31 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+
+# Initialize SparkSession
+spark = SparkSession.builder.appName("SquirrelData").getOrCreate()
+
+# Define schema for SquirrelData table
+schema = StructType([
+    StructField("AreaName", StringType(), True),
+    StructField("AreaID", StringType(), True),
+    StructField("ParkName", StringType(), True),
+    StructField("ParkID", IntegerType(), True),
+    StructField("SquirrelID", StringType(), True),
+    StructField("PrimaryFurColor", StringType(), True),
+    StructField("HighlightsInFurColor", StringType(), True),
+    StructField("ColorNotes", StringType(), True),
+    StructField("Location", StringType(), True),
+    StructField("AboveGroundHeight", StringType(), True),
+    StructField("SpecificLocation", StringType(), True),
+    StructField("Activities", StringType(), True),
+    StructField("InteractionsWithHumans", StringType(), True),
+    StructField("OtherNotesObservations", StringType(), True),
+    StructField("SquirrelLatitude", FloatType(), True),
+    StructField("SquirrelLongitude", FloatType(), True)
+])
+
+# Create an empty DataFrame with the defined schema
+squirrel_data = spark.createDataFrame([], schema)
+
+# Show the schema of the created DataFrame
+squirrel_data.printSchema()
